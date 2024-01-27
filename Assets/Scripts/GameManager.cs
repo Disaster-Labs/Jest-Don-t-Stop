@@ -10,7 +10,7 @@ public enum GameState {
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager S;
+    public static GameManager Singleton;
     public GameState current_state;
 
     public int item_hits;
