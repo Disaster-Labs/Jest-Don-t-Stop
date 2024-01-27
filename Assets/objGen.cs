@@ -6,11 +6,11 @@ public class objGen : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody rb; 
-    public GameObject obj;
-    public GameObject coconut;
+    public GameObject spawnedObject;
+    public GameObject randomPrefab;
     public GameObject[] prefabs;
 
-    public float spawnXPosition = 0f; // X轴初始生成位置
+    public float spawnXPosition = 0f; 
     public Vector3 minPosition;
     public Vector3 maxPosition;
 
@@ -21,35 +21,25 @@ public class objGen : MonoBehaviour
     {   
         nextSpawnTime = Time.time + spawnInterval;
 
-        // obj = prefabs[Random.Range(0, prefabs.Length)];
-        // coconut = Instantiate(obj, spawnPosition, Quaternion.identity);
-        // Debug.Log(spawnPosition);
-        // rb = coconut.GetComponent<Rigidbody>();
-        // if (rb == null){
-        //     rb = coconut.AddComponent<Rigidbody>();
-        // }
-        
-
     }
 
     void Update()
     {
         if (Time.time > nextSpawnTime){
-            GameObject randomPrefab = prefabs[Random.Range(0, prefabs.Length)];
+            randomPrefab = prefabs[Random.Range(0, prefabs.Length)];
             Vector3 spawnPosition = new Vector3(
-                Random.Range(-10.0f, 10.0f),
+                Random.Range(-9.0f, 9.0f),
                 6f, 0f);
-            GameObject spawnedObject = Instantiate(randomPrefab, spawnPosition, Quaternion.identity);
+            spawnedObject = Instantiate(randomPrefab, spawnPosition, Quaternion.identity);
             rb = spawnedObject.GetComponent<Rigidbody>();
-            if (rb == null){
-                rb = spawnedObject.AddComponent<Rigidbody>();
-            }
+
             if (rb!= null){
                 Debug.Log(rb.position.y);
                 Debug.Log(rb.useGravity);
+                Debug.Log(rb.position.y);
                 if(rb.position.y < -5f){
-                    Destroy(rb, 2.0f);
-                    Destroy(spawnedObject, 2.0f);
+                    // Debug.Log("here!");
+                    // Destroy(spawnedObject, 2.0f);
                 } else {
                     rb.useGravity = true;
                     rb.mass = 2.0f;
@@ -60,8 +50,6 @@ public class objGen : MonoBehaviour
         }
 
         
-        
-
     }
 }
 
