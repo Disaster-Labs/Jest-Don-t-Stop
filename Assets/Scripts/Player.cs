@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     private void OnPlayerInteraction(object sender, EventArgs e) 
     { 
         RaycastHit2D hitObj = Physics2D.Raycast(transform.position, Vector2.up * hitMaxDist);
-        if (hitObj.collider != null && hitObj.transform.tag == "game_stuff") { /* GameManager.Singleton.update_hits(onePunchHitAmt); */ }
+        if (hitObj.collider != null && hitObj.transform.tag == "game_stuff") { GameManager.Singleton.update_hits(onePunchHitAmt); }
         playerArms.SetActive(true);
         StartCoroutine(ExecuteAfterTime(0.5f));
     }
@@ -38,11 +38,6 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         playerArms.SetActive(false);
-    }
-
-    private void OnPlayerInteractionCancel(object sender, EventArgs e)
-    {
-        // playerArms.SetActive(false);
     }
 
     private void Update()
