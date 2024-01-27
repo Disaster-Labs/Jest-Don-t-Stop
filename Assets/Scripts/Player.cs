@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     private void OnPlayerInteraction(object sender, EventArgs e) 
     { 
         RaycastHit2D hitObj = Physics2D.Raycast(transform.position, Vector2.up * hitMaxDist);
-        if (hitObj.collider != null && hitObj.transform.tag == "game_stuff") 
+        if (hitObj.collider != null && hitObj.transform.tag == "FallingObjects") 
         { 
             GameManager.Singleton.update_hits(onePunchHitAmt); 
             audioSource.Play();
