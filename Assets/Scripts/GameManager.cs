@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
     {
         // telling player game is about to start
         
-
     
         //  Countdown and Call start_game
         StartCoroutine(CountdownToStart());
@@ -123,9 +122,16 @@ public class GameManager : MonoBehaviour
         // Determine if won or lost and tell players through text
         if (won)
         {
+            Image panelImage = yourPanelObject.GetComponent<Image>();
+            panelImage.color = Color.black;
+            messageOverlayObject.text = "YOU WON!";
+
             Debug.Log("YOU WON");
         } else
         {
+            Image panelImage = yourPanelObject.GetComponent<Image>();
+            panelImage.color = Color.black;
+            messageOverlayObject.text = "YOU WON!";
             Debug.Log("YOU LOST");
         }
 
