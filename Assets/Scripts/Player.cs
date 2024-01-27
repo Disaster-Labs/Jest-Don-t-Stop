@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] bool isPlayer1;
     public bool IsPlayer1() { return isPlayer1; }
 
+    private AudioSource audioSource;
+
     private float moveSpeed = 7;
     private float playerDistLimit = 7;
     private float hitMaxDist = 1;
@@ -24,12 +26,17 @@ public class Player : MonoBehaviour
     {
         if (isPlayer1) gameInput.OnPlayer1Interaction += OnPlayerInteraction; 
         else gameInput.OnPlayer2Interaction += OnPlayerInteraction; 
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnPlayerInteraction(object sender, EventArgs e) 
     { 
         RaycastHit2D hitObj = Physics2D.Raycast(transform.position, Vector2.up * hitMaxDist);
-        if (hitObj.collider != null && hitObj.transform.tag == "game_stuff") { GameManager.Singleton.update_hits(onePunchHitAmt); }
+        if (hitObj.collider != null && hitObj.transform.tag == "game_stuff") 
+        { 
+            GameManager.Singleton.update_hits(onePunchHitAmt); 
+            audioSource.Play();
+        }
         playerArms.SetActive(true);
         StartCoroutine(ExecuteAfterTime(0.5f));
     }
