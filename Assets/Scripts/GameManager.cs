@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
         // Update item_hits
         item_hits += points;
 
+        // Update King's Emotion
         if (points < 0)
         {
             king_script.update_king_emotion("angrier");
@@ -82,8 +83,16 @@ public class GameManager : MonoBehaviour
     public void game_over(bool won)
     {
         // Set current_state to GameOver
+        current_state = GameState.GameOver;
 
         // Determine if won or lost and tell players through text
+        if (won)
+        {
+            Debug.Log("YOU WON");
+        } else
+        {
+            Debug.Log("YOU LOST");
+        }
 
         // Have button to go back to menu
     }
