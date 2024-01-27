@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     public int item_hits;
 
+    public GameObject king;
+    public KingBehavior king_script;
+
     private void Awake()
     {
         if (GameManager.Singleton)
@@ -29,6 +32,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        king_script = king.GetComponent<KingBehavior>();
         start_new_game();
     }
 
@@ -64,6 +68,15 @@ public class GameManager : MonoBehaviour
     public void update_hits(int points)
     {
         // Update item_hits
+        item_hits += points;
+
+        if (points < 0)
+        {
+            king_script.update_king_emotion("angrier");
+        } else
+        {
+            king_script.update_king_emotion("happier");
+        }
     }
 
     public void game_over(bool won)
