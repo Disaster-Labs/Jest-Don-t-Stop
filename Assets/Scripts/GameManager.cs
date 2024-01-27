@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        king_script = king.GetComponent<KingBehavior>();
+        // king_script = king.GetComponent<KingBehavior>();
         start_new_game();
     }
 
