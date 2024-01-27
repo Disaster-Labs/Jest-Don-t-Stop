@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     public int item_hits;
 
-    public GameObject king;
     public KingBehavior king_script;
 
     private void Awake()
