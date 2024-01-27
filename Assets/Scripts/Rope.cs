@@ -11,6 +11,6 @@ public class Rope : MonoBehaviour
     private void Update() 
     {
         transform.localScale = new Vector3(Math.Abs(players.GetPlayersDistance()), ropeWidth, 1);
-        transform.position = players.GetPlayersMidPoint();
+        transform.localPosition = players.GetPlayersMidPoint();
     }
 }

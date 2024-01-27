@@ -16,27 +16,17 @@ public class Players : MonoBehaviour
 
     private void Start()
     {
-        gameInput.OnPlayer1Interaction += OnPlayer1Interaction;
-        gameInput.OnPlayer2Interaction += OnPlayer2Interaction;
-    }
-
-    private void OnPlayer1Interaction(object sender, System.EventArgs e) 
-    { 
-       // Punch Object
-       Debug.Log("Player 1 Interacted");
-    }
-
-    private void OnPlayer2Interaction(object sender, System.EventArgs e) 
-    { 
-       // Punch
-       Debug.Log("Player 2 Interacted");
-
-       // Double Punch
-       if (gameInput.BothPlayersInteracted()) { Debug.Log("Both Players Punched"); }
+        gameInput.OnPlayer2Interaction += BothPlayersInteraction;
     }
 
     private void Update() 
     {
         playerDistance = player1.transform.position.x - player2.transform.position.x;
+    }
+
+    private void BothPlayersInteraction(object sender, System.EventArgs e) 
+    {
+        if (!gameInput.BothPlayersInteracted()) return;
+        Debug.Log("Both Players Punched");
     }
 }
