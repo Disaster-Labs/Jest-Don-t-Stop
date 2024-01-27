@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public enum GameState {
     PreRound,
@@ -11,6 +13,8 @@ public enum GameState {
 public class GameManager : MonoBehaviour
 {
     public static GameManager Singleton;
+    public TextMeshProUGUI messageOverlayObject;
+    public GameObject yourPanelObject;
     public GameState current_state;
 
     public int item_hits;
@@ -41,24 +45,55 @@ public class GameManager : MonoBehaviour
     void start_new_game()
     {
         // Set current_state to PreRound
+        current_state = GameState.PreRound;
 
         // Reset hits
-
+        item_hits = 0;
+        
         // Call get_ready function
+        get_ready();
     }
 
     void get_ready()
     {
-        // Countdown telling player game is about to start
+        // telling player game is about to start
         
-        // Call start_game
+
+    
+        //  Countdown and Call start_game
+        StartCoroutine(CountdownToStart());
+
+    
+        
+    }
+    IEnumerator CountdownToStart()
+    {
+        Image panelImage = yourPanelObject.GetComponent<Image>();
+        panelImage.color = Color.black;
+        float currentTime = 3.0f;
+        messageOverlayObject.text = "Get Ready!";
+        yield return new WaitForSeconds(2.0f);
+
+        while (currentTime > 0)
+        {
+            messageOverlayObject.text = currentTime.ToString("F0"); // 将时间显示为整数
+            yield return new WaitForSeconds(1.0f); // 等待一秒钟
+            currentTime--;
+        }
+
+
+        messageOverlayObject.text = "";
+        panelImage.color = Color.clear;
+        start_game();
     }
 
     void start_game()
     {
         // Set current_state to Playing
-
+        Debug.Log("about to start!!!!!!!!!");
+        current_state = GameState.Playing;
         // Call function to start dropping items
+
     }
 
     public void update_hits(int points)
@@ -74,5 +109,6 @@ public class GameManager : MonoBehaviour
 
         // Have button to go back to menu
     }
+    
 
 }
