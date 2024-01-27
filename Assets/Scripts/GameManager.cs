@@ -80,8 +80,8 @@ public class GameManager : MonoBehaviour
 
         while (currentTime > 0)
         {
-            messageOverlayObject.text = currentTime.ToString("F0"); // 将时间显示为整数
-            yield return new WaitForSeconds(1.0f); // 等待一秒钟
+            messageOverlayObject.text = currentTime.ToString("F0"); 
+            yield return new WaitForSeconds(1.0f); 
             currentTime--;
         }
 
