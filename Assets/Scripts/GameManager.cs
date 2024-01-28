@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Singleton;
     public TextMeshProUGUI messageOverlayObject;
-    public GameObject yourPanelObject;
+    public GameObject scroll;
     public GameState current_state;
 
     public int juggle_counter;
@@ -77,8 +77,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator CountdownToStart()
     {
-        Image panelImage = yourPanelObject.GetComponent<Image>();
-        panelImage.color = Color.black;
+        scroll.SetActive(true);
         float currentTime = 3.0f;
         messageOverlayObject.text = "Get Ready!";
         yield return new WaitForSeconds(2.0f);
@@ -90,9 +89,8 @@ public class GameManager : MonoBehaviour
             currentTime--;
         }
 
-
         messageOverlayObject.text = "";
-        panelImage.color = Color.clear;
+        scroll.SetActive(false);
         start_game();
     }
 
@@ -132,19 +130,15 @@ public class GameManager : MonoBehaviour
     {
         // Set current_state to GameOver
         current_state = GameState.GameOver;
+        scroll.SetActive(true);
 
         // Determine if won or lost and tell players through text
         if (won)
         {
-            Image panelImage = yourPanelObject.GetComponent<Image>();
-            panelImage.color = Color.black;
             messageOverlayObject.text = "You made me laugh!";
-
             Debug.Log("YOU WON");
         } else
         {
-            Image panelImage = yourPanelObject.GetComponent<Image>();
-            panelImage.color = Color.black;
             messageOverlayObject.text = "You made me outraged!";
             Debug.Log("YOU LOST");
         }

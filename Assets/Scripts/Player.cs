@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
     private void OnPlayerInteraction(object sender, EventArgs e) 
     { 
+        if (GameManager.Singleton.current_state != GameState.Playing) return;
+        
         audioSource.PlayOneShot(audioClip);
         playerArms.SetActive(true);
         isPunching = true;
@@ -56,7 +58,7 @@ public class Player : MonoBehaviour
     {
         float playerDistance = players.GetPlayersDistance();
 
-        if (transform.position.x <= -9 && moveDir < 0)
+        if (transform.position.x <= -9 && moveDir < 0 || GameManager.Singleton.current_state != GameState.Playing)
         {
             isWalking = false;
             return;
