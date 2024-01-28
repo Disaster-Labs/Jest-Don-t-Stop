@@ -138,14 +138,14 @@ public class GameManager : MonoBehaviour
         {
             Image panelImage = yourPanelObject.GetComponent<Image>();
             panelImage.color = Color.black;
-            messageOverlayObject.text = "YOU WON!";
+            messageOverlayObject.text = "You made me laugh!";
 
             Debug.Log("YOU WON");
         } else
         {
             Image panelImage = yourPanelObject.GetComponent<Image>();
             panelImage.color = Color.black;
-            messageOverlayObject.text = "YOU WON!";
+            messageOverlayObject.text = "You made me outraged!";
             Debug.Log("YOU LOST");
         }
 
