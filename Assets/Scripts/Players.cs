@@ -12,7 +12,7 @@ public class Players : MonoBehaviour
     private float playerDistance;
     public float GetPlayersDistance() { return playerDistance; }
 
-    public Vector3 GetPlayersMidPoint() { return new Vector3((player1.transform.position.x  + player2.transform.position.x) / 2f, 0, 0.01f); }
+    public float GetPlayersMidPointX() { return (player1.transform.position.x  + player2.transform.position.x) / 2f; }
 
     private void Start()
     {
