@@ -58,11 +58,11 @@ public class Player : MonoBehaviour
     {
         float playerDistance = players.GetPlayersDistance();
 
-        if (transform.position.x <= -9 && moveDir < 0 || GameManager.Singleton.current_state != GameState.Playing)
+        if (transform.position.x <= -8.5 && moveDir < 0 || GameManager.Singleton.current_state != GameState.Playing)
         {
             isWalking = false;
             return;
-        } else if (transform.position.x >= 9 && moveDir > 0)
+        } else if (transform.position.x >= 8.5 && moveDir > 0)
         {
             isWalking = false;
             return;

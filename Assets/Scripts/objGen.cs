@@ -16,7 +16,7 @@ public class objGen : MonoBehaviour
 
     public float spawnInterval = 2f; 
     private float nextSpawnTime;
-    public Transform itemsParent;
+    public GameObject itemsParent;
     private int maxItemCount = 0;
 
     void Start()
@@ -50,7 +50,7 @@ public class objGen : MonoBehaviour
                     maxItemCount = 3; 
                     break;
             }
-            if (itemsParent.childCount>= maxItemCount){
+            if (itemsParent.transform.childCount >= maxItemCount){
                 Debug.Log("stop Generate");
                 return ;
             }
@@ -58,7 +58,7 @@ public class objGen : MonoBehaviour
             Vector3 spawnPosition = new Vector3(Random.Range(min_x, max_x),6f, 0f);
             spawnedObject = Instantiate(randomPrefab, spawnPosition, Quaternion.identity);
             
-            spawnedObject.transform.parent = itemsParent;
+            spawnedObject.transform.parent = itemsParent.transform;
             // Debug.Log("number: ");
             // Debug.Log(itemsParent.childCount);
             rb = spawnedObject.GetComponent<Rigidbody>();
