@@ -14,6 +14,12 @@ public enum KingEmotion {
 
 public class KingBehavior : MonoBehaviour
 {
+    [SerializeField] private AudioClip frustratedAudioClip;
+    [SerializeField] private AudioClip discontentAudioClip;
+    [SerializeField] private AudioClip neutralAudioClip;
+    [SerializeField] private AudioClip satisfactoryAudioClip;
+    [SerializeField] private AudioClip joyAudioClip;
+
     public KingEmotion current_emotion;
     private SpriteRenderer spriteRenderer;
 
@@ -83,6 +89,27 @@ public class KingBehavior : MonoBehaviour
         spriteRenderer.sprite = emotion_sprites[(int)current_emotion];
 
         KingReaction.SetActive(true);
+        
+        switch(current_emotion)
+        {
+            case KingEmotion.Frustrated:
+                GetComponent<AudioSource>().PlayOneShot(frustratedAudioClip);
+                break;
+            case KingEmotion.Discontent:
+                GetComponent<AudioSource>().PlayOneShot(discontentAudioClip);
+                break;
+            case KingEmotion.Neutral:
+                GetComponent<AudioSource>().PlayOneShot(neutralAudioClip);
+                break;
+            case KingEmotion.Satisfactory:
+                GetComponent<AudioSource>().PlayOneShot(satisfactoryAudioClip);
+                break;
+            case KingEmotion.Joy:
+                GetComponent<AudioSource>().PlayOneShot(joyAudioClip);
+                break;
+            default:
+                break;
+        }
 
         yield return new WaitForSeconds(2.0f);
 
