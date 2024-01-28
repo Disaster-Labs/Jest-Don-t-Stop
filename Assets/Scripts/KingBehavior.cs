@@ -14,7 +14,7 @@ public enum KingEmotion {
 
 public class KingBehavior : MonoBehaviour
 {
-    private KingEmotion current_emotion;
+    public KingEmotion current_emotion;
     private SpriteRenderer spriteRenderer;
 
     public GameObject KingBubble;
