@@ -6,6 +6,7 @@ TagManager:
   tags:
   - game_stuff
   - FallingObjects
+  - PlayerArms
   layers:
   - Default
   - TransparentFX
