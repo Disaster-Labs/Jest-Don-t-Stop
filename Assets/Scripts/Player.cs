@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -18,8 +17,6 @@ public class Player : MonoBehaviour
 
     private float moveSpeed = 10;
     private float playerDistLimit = 7;
-    private float hitMaxDist = 2;
-    private int onePunchHitAmt = 1;
 
     private bool isWalking = false;
     public bool IsWalking() { return isWalking; }
