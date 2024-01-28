@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public enum GameState {
     PreRound,
@@ -35,7 +36,8 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        // SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
         // king_script = king.GetComponent<KingBehavior>();
         start_new_game();
     }
@@ -46,8 +48,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void start_new_game()
+    public void start_new_game()
     {
+        // SceneManager.LoadScene("objDrop", LoadSceneMode.Single);
         // Set current_state to PreRound
         current_state = GameState.PreRound;
 
