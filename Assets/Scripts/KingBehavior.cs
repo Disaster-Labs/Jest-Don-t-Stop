@@ -20,8 +20,7 @@ public class KingBehavior : MonoBehaviour
     [SerializeField] private AudioClip satisfactoryAudioClip;
     [SerializeField] private AudioClip joyAudioClip;
 
-
-    private KingEmotion current_emotion;
+    public KingEmotion current_emotion;
     private SpriteRenderer spriteRenderer;
 
     public GameObject KingBubble;
