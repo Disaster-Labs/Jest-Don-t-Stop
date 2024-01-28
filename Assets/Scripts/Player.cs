@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,35 +9,43 @@ public class Player : MonoBehaviour
     [SerializeField] private GameInput gameInput;
     [SerializeField] private Players players;
     [SerializeField] private GameObject playerArms;
+    [SerializeField] private AudioClip audioClip; 
 
     [SerializeField] bool isPlayer1;
     public bool IsPlayer1() { return isPlayer1; }
 
-    private float moveSpeed = 7;
+    private AudioSource audioSource;
+
+    private float moveSpeed = 10;
     private float playerDistLimit = 7;
-    private float hitMaxDist = 1;
+    private float hitMaxDist = 2;
     private int onePunchHitAmt = 1;
 
     private bool isWalking = false;
     public bool IsWalking() { return isWalking; }
 
+    private bool isPunching = false;
+    public bool IsPunching() { return isPunching; }
+
     private void Start()
     {
         if (isPlayer1) gameInput.OnPlayer1Interaction += OnPlayerInteraction; 
         else gameInput.OnPlayer2Interaction += OnPlayerInteraction; 
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnPlayerInteraction(object sender, EventArgs e) 
     { 
-        RaycastHit2D hitObj = Physics2D.Raycast(transform.position, Vector2.up * hitMaxDist);
-        if (hitObj.collider != null && hitObj.transform.tag == "game_stuff") { GameManager.Singleton.update_hits(onePunchHitAmt); }
+        audioSource.PlayOneShot(audioClip);
         playerArms.SetActive(true);
-        StartCoroutine(ExecuteAfterTime(0.5f));
+        isPunching = true;
+        StartCoroutine(ExecuteAfterTime(0.21f));
     }
 
     private IEnumerator ExecuteAfterTime(float time) 
     {
         yield return new WaitForSeconds(time);
+        isPunching = false;
         playerArms.SetActive(false);
     }
 
@@ -49,6 +58,16 @@ public class Player : MonoBehaviour
     private void HandlePlayerMovement(float moveDir) 
     {
         float playerDistance = players.GetPlayersDistance();
+
+        if (transform.position.x <= -9 && moveDir < 0)
+        {
+            isWalking = false;
+            return;
+        } else if (transform.position.x >= 9 && moveDir > 0)
+        {
+            isWalking = false;
+            return;
+        }
 
         if (Math.Abs(playerDistance) < playerDistLimit) 
         {
