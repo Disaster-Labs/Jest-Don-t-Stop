@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI messageOverlayObject;
     public GameObject scroll;
     public GameState current_state;
+    public GameObject menuBtn;
 
     public int juggle_counter;
     public int fail_counter;
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
     IEnumerator CountdownToStart()
     {
         scroll.SetActive(true);
+        menuBtn.SetActive(false);
         float currentTime = 3.0f;
         messageOverlayObject.text = "Get Ready!";
         yield return new WaitForSeconds(2.0f);
@@ -130,6 +132,7 @@ public class GameManager : MonoBehaviour
         // Set current_state to GameOver
         current_state = GameState.GameOver;
         scroll.SetActive(true);
+        menuBtn.SetActive(true);
 
         // Determine if won or lost and tell players through text
         if (won)
