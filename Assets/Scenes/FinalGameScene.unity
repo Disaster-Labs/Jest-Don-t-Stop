@@ -1190,6 +1190,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2264751382887644531, guid: f82f67c218cbe8496b662d6626ee9fd8, type: 3}
+      propertyPath: m_TagString
+      value: PlayerArms
+      objectReference: {fileID: 0}
     - target: {fileID: 3355655366789909060, guid: f82f67c218cbe8496b662d6626ee9fd8, type: 3}
       propertyPath: gameInput
       value: 
@@ -1202,6 +1206,18 @@ PrefabInstance:
       propertyPath: gameInput
       value: 
       objectReference: {fileID: 1190907506}
+    - target: {fileID: 7038695394068053445, guid: f82f67c218cbe8496b662d6626ee9fd8, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246649773992368289, guid: f82f67c218cbe8496b662d6626ee9fd8, type: 3}
+      propertyPath: m_TagString
+      value: PlayerArms
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573787799184831523, guid: f82f67c218cbe8496b662d6626ee9fd8, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7806567799723907528, guid: f82f67c218cbe8496b662d6626ee9fd8, type: 3}
       propertyPath: gameInput
       value: 
