@@ -15,11 +15,17 @@ public enum KingEmotion {
 public class KingBehavior : MonoBehaviour
 {
     private KingEmotion current_emotion;
+    private SpriteRenderer spriteRenderer;
+
+    public GameObject KingBubble;
+    public GameObject KingReaction;
+    public Sprite[] emotion_sprites;
 
     // Start is called before the first frame update
     void Start()
     {
         current_emotion = KingEmotion.Discontent;
+        spriteRenderer = KingReaction.GetComponent<SpriteRenderer>();
         Debug.Log("Current Emotion: " + current_emotion);
     }
 
@@ -74,7 +80,22 @@ public class KingBehavior : MonoBehaviour
             Debug.Log("Current emotion: " + current_emotion);
         }
 
-        // Update animations?
+        // Toggle reactions
+        StartCoroutine(king_react());
 
+    }
+
+    private IEnumerator king_react()
+    {
+        KingBubble.SetActive(true);
+
+        spriteRenderer.sprite = emotion_sprites[(int)current_emotion];
+
+        KingReaction.SetActive(true);
+
+        yield return new WaitForSeconds(2.0f);
+
+        KingBubble.SetActive(false);
+        KingReaction.SetActive(false);
     }
 }
