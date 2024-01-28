@@ -14,8 +14,10 @@ public class objGen : MonoBehaviour
     public float min_x;
     public float max_x;
 
-    public float spawnInterval = 2f; // 生成间隔时间
+    public float spawnInterval = 2f; 
     private float nextSpawnTime;
+    public Transform itemsParent;
+    private int maxItemCount = 0;
 
     void Start()
     {   
@@ -25,11 +27,41 @@ public class objGen : MonoBehaviour
 
     void Update()
     {   
-        
+
         if (Time.time > nextSpawnTime && GameManager.Singleton.current_state==GameState.Playing){
+            
+            switch (GameManager.Singleton.king_script.current_emotion)
+            {
+                case KingEmotion.Frustrated:
+                    maxItemCount = 2;
+                    break;
+                case KingEmotion.Discontent:
+                    maxItemCount = 3;
+                    break;
+                case KingEmotion.Neutral:
+                    maxItemCount = 4;
+                    break;
+                case KingEmotion.Satisfactory:
+                    maxItemCount = 5;
+                    break;
+                case KingEmotion.Joy:
+                    maxItemCount = 6;
+                    break;
+                default:
+                    maxItemCount = 3; 
+                    break;
+            }
+            if (itemsParent.childCount>= maxItemCount){
+                Debug.Log("stop Generate");
+                return ;
+            }
             randomPrefab = prefabs[Random.Range(0, prefabs.Length)];
             Vector3 spawnPosition = new Vector3(Random.Range(min_x, max_x),6f, 0f);
             spawnedObject = Instantiate(randomPrefab, spawnPosition, Quaternion.identity);
+            
+            spawnedObject.transform.parent = itemsParent;
+            // Debug.Log("number: ");
+            // Debug.Log(itemsParent.childCount);
             rb = spawnedObject.GetComponent<Rigidbody>();
 
             if (rb!= null){
