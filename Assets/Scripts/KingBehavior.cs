@@ -15,12 +15,11 @@ public enum KingEmotion {
 public class KingBehavior : MonoBehaviour
 {
     private KingEmotion current_emotion;
-    public GameObject ball;
 
     // Start is called before the first frame update
     void Start()
     {
-        current_emotion = KingEmotion.Frustrated;
+        current_emotion = KingEmotion.Discontent;
         Debug.Log("Current Emotion: " + current_emotion);
     }
 
@@ -38,7 +37,7 @@ public class KingBehavior : MonoBehaviour
         }
     }
 
-    void update_king_emotion(string emotion)
+    public void update_king_emotion(string emotion)
     {
         int i = (int)current_emotion;
 

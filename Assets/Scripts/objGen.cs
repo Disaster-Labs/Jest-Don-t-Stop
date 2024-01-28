@@ -25,6 +25,7 @@ public class objGen : MonoBehaviour
 
     void Update()
     {   
+        
         if (Time.time > nextSpawnTime && GameManager.Singleton.current_state==GameState.Playing){
             randomPrefab = prefabs[Random.Range(0, prefabs.Length)];
             Vector3 spawnPosition = new Vector3(
