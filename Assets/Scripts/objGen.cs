@@ -11,8 +11,8 @@ public class objGen : MonoBehaviour
     public GameObject[] prefabs;
 
     public float spawnXPosition = 0f; 
-    public Vector3 minPosition;
-    public Vector3 maxPosition;
+    public float min_x;
+    public float max_x;
 
     public float spawnInterval = 2f; // 生成间隔时间
     private float nextSpawnTime;
@@ -28,9 +28,7 @@ public class objGen : MonoBehaviour
         
         if (Time.time > nextSpawnTime && GameManager.Singleton.current_state==GameState.Playing){
             randomPrefab = prefabs[Random.Range(0, prefabs.Length)];
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(-9.0f, 9.0f),
-                6f, 0f);
+            Vector3 spawnPosition = new Vector3(Random.Range(min_x, max_x),6f, 0f);
             spawnedObject = Instantiate(randomPrefab, spawnPosition, Quaternion.identity);
             rb = spawnedObject.GetComponent<Rigidbody>();
 

@@ -9,8 +9,8 @@ public class PlayerArms : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (player.IsPunching()) {
-            Debug.Log("Hi");
-            GameManager.Singleton.update_hits(1);
+            Debug.Log("Juggle item!");
+            GameManager.Singleton.update_hits(1, "juggle");
         }
     }
 }

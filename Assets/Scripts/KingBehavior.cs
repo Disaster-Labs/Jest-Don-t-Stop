@@ -32,15 +32,6 @@ public class KingBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            update_king_emotion("angrier");
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            update_king_emotion("happier");
-        }
     }
 
     public void update_king_emotion(string emotion)
@@ -67,12 +58,12 @@ public class KingBehavior : MonoBehaviour
         if (current_emotion == KingEmotion.Frustrated &&
             emotion == "angrier")
         {
-            // Probably broadcast game over  message to GameManager here;
+            GameManager.Singleton.game_over(false);
             Debug.Log("GAME OVER");
         } else if (current_emotion == KingEmotion.Joy &&
                    emotion == "happier")
         {
-            // Broadcase win message to GameManager
+            GameManager.Singleton.game_over(true);
             Debug.Log("YOU WIN");
         } else
         {

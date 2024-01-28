@@ -18,7 +18,10 @@ public class GameManager : MonoBehaviour
     public GameObject yourPanelObject;
     public GameState current_state;
 
-    public int item_hits;
+    public int juggle_counter;
+    public int fail_counter;
+    public int juggles_to_make_happy;
+    public int fails_to_make_angry;
 
     public KingBehavior king_script;
 
@@ -53,8 +56,9 @@ public class GameManager : MonoBehaviour
         // Set current_state to PreRound
         current_state = GameState.PreRound;
 
-        // Reset hits
-        item_hits = 0;
+        // Reset counters
+        juggle_counter = 0;
+        fail_counter = 0;
         
         // Call get_ready function
         get_ready();
@@ -101,18 +105,26 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void update_hits(int points)
+    public void update_hits(int points, string counter)
     {
-        // Update item_hits
-        item_hits += points;
+        // Update respective counter
+        if (counter == "juggle")
+        {
+            juggle_counter++;
+        } else if (counter == "fail")
+        {
+            fail_counter++;
+        }
 
         // Update King's Emotion
-        if (points < 0)
+        if (juggle_counter >= juggles_to_make_happy)
         {
-            king_script.update_king_emotion("angrier");
-        } else
-        {
+            juggle_counter = 0;
             king_script.update_king_emotion("happier");
+        } else if (fail_counter >= fails_to_make_angry)
+        {
+            fail_counter = 0;
+            king_script.update_king_emotion("angrier");
         }
     }
 
@@ -126,14 +138,14 @@ public class GameManager : MonoBehaviour
         {
             Image panelImage = yourPanelObject.GetComponent<Image>();
             panelImage.color = Color.black;
-            messageOverlayObject.text = "YOU WON!";
+            messageOverlayObject.text = "You made me laugh!";
 
             Debug.Log("YOU WON");
         } else
         {
             Image panelImage = yourPanelObject.GetComponent<Image>();
             panelImage.color = Color.black;
-            messageOverlayObject.text = "YOU WON!";
+            messageOverlayObject.text = "You made me outraged!";
             Debug.Log("YOU LOST");
         }
 
