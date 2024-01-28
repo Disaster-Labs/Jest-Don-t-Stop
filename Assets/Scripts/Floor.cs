@@ -9,6 +9,7 @@ public class Floor : MonoBehaviour
     {
         if (col.gameObject.tag == "FallingObjects")
         {
+            Debug.Log("Item hit floor!");
             GameManager.Singleton.update_hits(1, "fail");
             Destroy(col.gameObject);
         }

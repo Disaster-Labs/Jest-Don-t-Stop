@@ -32,15 +32,6 @@ public class KingBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            update_king_emotion("angrier");
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            update_king_emotion("happier");
-        }
     }
 
     public void update_king_emotion(string emotion)
