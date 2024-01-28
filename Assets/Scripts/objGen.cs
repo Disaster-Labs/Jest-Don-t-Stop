@@ -20,7 +20,6 @@ public class objGen : MonoBehaviour
     void Start()
     {   
         nextSpawnTime = Time.time + spawnInterval;
-
     }
 
     void Update()

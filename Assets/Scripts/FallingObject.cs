@@ -5,8 +5,8 @@ using UnityEngine;
 public class FallingObject : MonoBehaviour
 {
     [SerializeField] private AudioClip audioClip;
-    [SerializeField] GameObject particles;
-    [SerializeField] GameObject visual;
+    [SerializeField] private GameObject particles;
+    [SerializeField] private GameObject visual;
 
     private int health = 3; 
 
@@ -20,6 +20,7 @@ public class FallingObject : MonoBehaviour
 
         if (health == 0) 
         {
+            Debug.Log("No More Health :(");
             visual.SetActive(false);
             particles.GetComponent<ParticleSystem>().Play();
             StartCoroutine(ExecuteAfterTime(0.3f));
