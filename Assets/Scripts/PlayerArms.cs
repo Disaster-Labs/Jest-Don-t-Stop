@@ -10,7 +10,7 @@ public class PlayerArms : MonoBehaviour
     {
         if (player.IsPunching()) {
             Debug.Log("Hi");
-            GameManager.Singleton.update_hits(1);
+            GameManager.Singleton.update_hits(1, "happy");
         }
     }
 }
